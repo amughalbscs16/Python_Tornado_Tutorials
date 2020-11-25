@@ -1,0 +1,4 @@
+Steps for Migration:
+    To run the create database open the create_db package.
+    goto .env file add your database details.
+    Now run run_db_create.py file.

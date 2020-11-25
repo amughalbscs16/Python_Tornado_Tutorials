@@ -3,3 +3,4 @@ import asyncio
 
 asyncio.run(create_db_tables())
 session = get_session()
+
