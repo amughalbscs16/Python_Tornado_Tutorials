@@ -21,10 +21,12 @@ class MainAPIHandler(tornado.web.RequestHandler):
         if slug in registry:
             controller = registry[slug]
         ctrl_obj = controller()
-        jsondata = json.dumps({})
+        json_data = json.dumps({})
+
         # If function in controller
         if method in ctrl_obj.methods:
             ctrl_method = getattr(ctrl_obj, method)
+
             # call the function with data
             jsondata = ctrl_method()
 
