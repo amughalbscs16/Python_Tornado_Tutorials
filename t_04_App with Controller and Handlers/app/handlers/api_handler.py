@@ -11,24 +11,29 @@ class MainAPIHandler(tornado.web.RequestHandler):
     method: the controller method
 
     """
+
     def prepare(self):
         pass
 
-    async def get(self, slug, method):
+    async def post(self, slug, method):
         print(self.request.path)
+        data = json.loads(self.request.body)
         # If correct controller
         controller = None
         if slug in registry:
             controller = registry[slug]
-        ctrl_obj = controller()
+        ctrl_obj = controller(data)
         json_data = json.dumps({})
-
         # If function in controller
         if method in ctrl_obj.methods:
             ctrl_method = getattr(ctrl_obj, method)
-
             # call the function with data
-            jsondata = ctrl_method()
+            self.json_data = ctrl_method()
 
-        self.write(jsondata)
+        # returning the data
+        self.write(self.json_data)
+
+
+
+
 

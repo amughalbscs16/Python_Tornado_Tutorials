@@ -4,9 +4,10 @@ import json
 
 
 class UserController(BaseController):
-    def __init__(self):
+    def __init__(self, data):
         # init parent constructor for parent attributes
         super().__init__()
+        self.data = data
         # maintain a list of functions in the controller to check
         self.methods = ["get_all_users"]
 
